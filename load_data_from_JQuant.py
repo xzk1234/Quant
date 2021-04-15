@@ -56,9 +56,13 @@ def load_once(now, last_price=None, price_name='price', return_name='return'):
                             port='5432')
     curs = conn.cursor()
     total_index = list(np.load('columns.npy', allow_pickle=True))
+    print(len(total_index))
+    time.sleep(10000)
     dt = datetime.timedelta(seconds=now.second, microseconds=now.microsecond)
     now = now - dt
     df_total = get_all_data(total_index, frequency='minute', start_date=now, end_date=now)
+    print(df_total)
+    time.sleep(1000)
     if last_price is None:
         last_price = df_total.values.copy()
     temp = df_total.values.copy()
